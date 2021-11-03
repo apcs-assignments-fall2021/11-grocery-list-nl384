@@ -1,23 +1,39 @@
 public class GroceryList {
     private String[] arr;
 
-    // Creates a new empty Grocery List of size 10
+    // Creates a new empty Grocery List
     // Remember to create the array!
     // You don't need to change any of the values in the array
     public GroceryList() {
-        // YOUR CODE HERE
+        // Our grocery list will have a max size of 10
+        this.arr = new String[10];
     }
 
     // Adds an item to the grocery list
     public void add(String item) {
-        // YOUR CODE HERE
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == null) {
+                arr[i] = item;
+                break;
+            }
+        }
     }
 
     // Removes an item from the grocery list
     // Replaces the item with null
     // Remember to shift anything to the left if necessary
     public void remove(String item) {
-        // YOUR CODE HERE
+        int index = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i].equals(item)) {
+                index = i;
+                break;
+            }
+        }
+
+        for (int i = index; i < arr.length-1; i++) {
+            arr[i] = arr[i+1];
+        }
     }
 
     // Returns a String representation the grocery list
@@ -29,7 +45,15 @@ public class GroceryList {
     // You **may** have an extra comma at the end
     @Override
     public String toString() {
-        // YOUR CODE HERE
-        return "";
+        String str = "Grocery List: ";
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == null) {
+                break;
+            }
+            str += arr[i] + ", ";
+        }
+
+        str = str.substring(0, str.length()-2);
+        return str;
     }
 }
